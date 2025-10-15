@@ -2,6 +2,7 @@ import Image from "next/image";
 import LogoIcon from "../public/logo.svg"
 import DollarIcon from "../public/icon-dollar.svg"
 import PersonIcon from "../public/icon-person.svg"
+import InputField from "./components/InputField";
 
 export default function Home() {
   return (
@@ -15,17 +16,7 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-12">
             <div className="flex flex-col col-start-1">
               <p className="text-m text-label-text-color">Bill</p>
-              <div className="bg-input-field-color flex flex-row border-black w-full justify-between"> {/*Input Field Component*/}
-                <Image
-                  src={DollarIcon}
-                  alt=""
-                  className="ml-2.5"
-                />
-                <input className="ml-4 text-input-text-color text-right text-4x1" 
-                  type="text"
-                  placeholder="0"
-                />
-              </div> {/*Input Field Component*/}
+              <InputField icon={DollarIcon} />
 
               <div className="grid grid-cols-3 grid-rows-2 gap-4 mt-10"> {/* Button Component to be Implemented */}
                 <button className="bg-button-color p-2.5">5%</button>
@@ -37,17 +28,7 @@ export default function Home() {
               </div>
 
               <p className="text-m text-label-text-color mt-10">Number of People</p>
-              <div className="bg-input-field-color flex flex-row border-black w-full justify-between"> {/*Input Field Component*/}
-                <Image
-                  src={PersonIcon}
-                  alt=""
-                  className="ml-2.5"
-                />
-                <input className="ml-4 text-input-text-color text-right text-4x1" 
-                  type="text"
-                  placeholder="0"
-                />
-              </div> {/*Input Field Component*/}
+              <InputField icon={PersonIcon} />
             </div>
             <div className="bg-output-container-color flex flex-col col-start-2"> 
               <div className="grid grid-cols-2 p-8 pt-10 justify-between"> {/* Output Field Component to Implement */}
