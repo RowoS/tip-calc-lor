@@ -3,6 +3,7 @@ import LogoIcon from "../public/logo.svg"
 import DollarIcon from "../public/icon-dollar.svg"
 import PersonIcon from "../public/icon-person.svg"
 import InputField from "./components/InputField";
+import OutputField from "./components/OutputField";
 
 export default function Home() {
   return (
@@ -30,29 +31,10 @@ export default function Home() {
               <p className="text-m text-label-text-color mt-10">Number of People</p>
               <InputField icon={PersonIcon} />
             </div>
-            <div className="bg-output-container-color flex flex-col col-start-2"> 
-              <div className="grid grid-cols-2 p-8 pt-10 justify-between"> {/* Output Field Component to Implement */}
-                <div className="col-start-1">
-                  <div className="flex flex-col text-xs">
-                    <p className="font-semibold">Tip Amount</p>
-                    <p className="text-[10px] opacity-50">/ person</p>
-                  </div>
-                </div>
-                <div className="col-start-2">
-                  <p className="text-2xl text-right text-output-color">$0.00</p>
-                </div>
-              </div> {/* Output Field Component to Implement */}
-              <div className="grid grid-cols-2 pr-8 pl-8 justify-between mt-2"> {/* Output Field Component to Implement */}
-                <div className="col-start-1">
-                  <div className="flex flex-col text-xs">
-                    <p className="font-semibold">Total</p>
-                    <p className="text-[10px] opacity-50">/ person</p>
-                  </div>
-                </div>
-                <div className="col-start-2">
-                  <p className="text-2xl text-right text-output-color">$0.00</p>
-                </div>
-              </div> {/* Output Field Component to Implement */}
+            <div className="bg-output-container-color flex flex-col col-start-2">
+              <div className="pt-4"></div> 
+              <OutputField label="Tip Amount" amount={0}/>
+              <OutputField label="Total" amount={0} />
 
               <div className="bg-output-color text-output-container-color flex max-w-50 w-50 p-4 justify-center items-center self-center mt-16 rounded-lg">
                 <button className="text-reset-text-color">RESET</button>
