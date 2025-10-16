@@ -9,6 +9,8 @@ import OutputField from "./components/OutputField";
 import TipButtons from "./components/TipButtons";
 
 import { useState } from "react";
+import { calculateTipPerPerson, calculateTotalPerPerson } from "./utils/TipCalcs";
+import { calculationProps } from "./types";
 
 export default function Home() {
 
@@ -17,6 +19,13 @@ export default function Home() {
   const [ numberOfPeople, setNumberOfPeople ] = useState<string>("");
   const [ customTip, setCustomTip] = useState<string>("");
   
+  const calcHelper: calculationProps = {
+    billAmount: billAmount,
+    tipPercentage: tipPercentage,
+    customTip: customTip,
+    numberOfPeople: numberOfPeople
+  }
+
   const handleBillChange = (value: string) => {
     if (value === "" || /^\d*\.?\d*$/.test(value)) {
       setBillAmount(value);
@@ -28,7 +37,6 @@ export default function Home() {
     if (value === "" || /^\d+$/.test(value))
     {
       setNumberOfPeople(value);
-      const numPeople = parseFloat(value);
     }
   };
 
@@ -94,8 +102,14 @@ export default function Home() {
               
               <div className="pt-4"></div> 
               
-              <OutputField label="Tip Amount" amount={0}/>
-              <OutputField label="Total" amount={0} />
+              <OutputField 
+                label="Tip Amount" 
+                amount={calculateTipPerPerson(calcHelper)}
+              />
+              <OutputField 
+                label="Total" 
+                amount={calculateTotalPerPerson(calcHelper)} 
+              />
 
               <div className="bg-output-color text-output-container-color flex max-w-50 w-50 p-4 justify-center items-center self-center mt-16 rounded-lg">
                 <button 
