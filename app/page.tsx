@@ -9,7 +9,7 @@ import OutputField from "./components/OutputField";
 import TipButtons from "./components/TipButtons";
 
 import { useState } from "react";
-import { calculateTipPerPerson, calculateTotalPerPerson } from "./utils/TipCalcs";
+import { calculateTipPerPerson, calculateTotalPerPerson, showErrorMessage } from "./utils/TipCalcs";
 import { calculationProps } from "./types";
 
 export default function Home() {
@@ -18,6 +18,7 @@ export default function Home() {
   const [ tipPercentage, setTipPercentage ] = useState<number>(0);
   const [ numberOfPeople, setNumberOfPeople ] = useState<string>("");
   const [ customTip, setCustomTip] = useState<string>("");
+  const [ errorMessage, setErrorMessage ] = useState<boolean>(false);
   
   const calcHelper: calculationProps = {
     billAmount: billAmount,
@@ -37,6 +38,7 @@ export default function Home() {
     if (value === "" || /^\d+$/.test(value))
     {
       setNumberOfPeople(value);
+      setErrorMessage(showErrorMessage(value));
     }
   };
 
@@ -61,6 +63,14 @@ export default function Home() {
     }
     
   };
+
+  const handleReset = () => {
+    setBillAmount("");
+    setTipPercentage(0);
+    setNumberOfPeople("");
+    setCustomTip("");
+    setErrorMessage(false);
+  }
 
   return (
     <>
@@ -88,14 +98,23 @@ export default function Home() {
                 onCustomTipChange={handleCustomTipChange}
               />
               
-              <p className="text-m text-label-text-color mt-10">Number of People</p>
-              
-              <InputField
-               icon={PersonIcon}
-               value={numberOfPeople}
-               onChange={handlePeopleChange}
-               type="text"
-              />
+              <div className="mt-10">
+                <div className="flex justify-between items-center">
+                  <p className="text-m text-label-text-color">Number of People</p>
+                  {errorMessage && (
+                    <p className="text-xs text-red-500">Can`t be zero</p>
+                  )}       
+                </div>
+
+                <InputField
+                  icon={PersonIcon}
+                  value={numberOfPeople}
+                  onChange={handlePeopleChange}
+                  type="text"
+                  error={errorMessage}
+                />
+                
+              </div>
             
             </div>
             <div className="bg-output-container-color flex flex-col col-start-2">
@@ -114,6 +133,7 @@ export default function Home() {
               <div className="bg-output-color text-output-container-color flex max-w-50 w-50 p-4 justify-center items-center self-center mt-16 rounded-lg">
                 <button 
                   className="text-reset-text-color"
+                  onClick={handleReset}
                 >RESET</button>
               
               </div>

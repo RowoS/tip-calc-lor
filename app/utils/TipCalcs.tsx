@@ -22,3 +22,12 @@ export function calculateTotalPerPerson(props: calculationProps): number
 
     return (bill / people) + tipPerPerson;
 }
+
+export function showErrorMessage(numberOfPeople: string): boolean
+{
+    if (numberOfPeople === "") return false;
+
+    const peopleNum = parseFloat(numberOfPeople);
+
+    return peopleNum < 1;
+}
