@@ -22,7 +22,7 @@ This is a solution to the [Tip Calculator app challenge on Frontend Mentor](http
 
 
 - Solution URL: [GitHub Repo](https://github.com/RowoS/tip-calc-lor)
-- Live Server URL: [Vercel App](https://qr-code1-orpin.vercel.app/)
+- Live Server URL: [Vercel App](https://tip-calc-lor.vercel.app/)
 
 
 ## Author
@@ -36,36 +36,16 @@ This is a solution to the [Tip Calculator app challenge on Frontend Mentor](http
 
 
 
+.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\
+\
+\
+\
+\
+\
+.
+# Create Next App details
 
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
