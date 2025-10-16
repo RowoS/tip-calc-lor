@@ -9,7 +9,7 @@ import OutputField from "./components/OutputField";
 import TipButtons from "./components/TipButtons";
 
 import { useState } from "react";
-import { calculateTipPerPerson, calculateTotalPerPerson, showErrorMessage } from "./utils/TipCalcs";
+import { calculateTipPerPerson, calculateTotalPerPerson, showErrorMessage, isValidNumberInput } from "./utils/TipCalcs";
 import { calculationProps } from "./types";
 
 export default function Home() {
@@ -28,14 +28,14 @@ export default function Home() {
   }
 
   const handleBillChange = (value: string) => {
-    if (value === "" || /^\d*\.?\d*$/.test(value)) {
+    if (isValidNumberInput(value, true)) {
       setBillAmount(value);
     }
     
   };
 
   const handlePeopleChange = (value: string) => {
-    if (value === "" || /^\d+$/.test(value))
+    if (isValidNumberInput(value, false))
     {
       setNumberOfPeople(value);
       setErrorMessage(showErrorMessage(value));
@@ -51,7 +51,7 @@ export default function Home() {
   };
 
   const handleCustomTipChange = (value: string) => {
-    if ((value === "" || /^\d*\.?\d*$/.test(value)) && !Number.isNaN(parseFloat(value)))
+    if (isValidNumberInput(value, true) && !Number.isNaN(parseFloat(value)))
     {
       setCustomTip(value);
       const val = parseFloat(value);
@@ -83,7 +83,7 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-12">
             <div className="flex flex-col col-start-1">
               
-              <p className="text-m text-label-text-color">Bill</p>
+              <p className="text-2xl text-label-text-color">Bill</p>
               <InputField 
                 icon={DollarIcon}
                 value={billAmount}
@@ -100,7 +100,7 @@ export default function Home() {
               
               <div className="mt-10">
                 <div className="flex justify-between items-center">
-                  <p className="text-m text-label-text-color">Number of People</p>
+                  <p className="text-2xl text-label-text-color">Number of People</p>
                   {errorMessage && (
                     <p className="text-xs text-red-500">Can`t be zero</p>
                   )}       
