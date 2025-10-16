@@ -1,3 +1,73 @@
+# Tip Calculator | Frontend Mentor Challenge
+
+
+<!-- ![Preview of Challenge](./preview.png) -->
+
+This is a solution to the [Tip Calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+
+## Table of contents
+
+- [Overview](#overview)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [Author](#author)
+
+## Overview
+
+### Screenshot
+
+![Preview of Output](./public/Screenshot%202025-10-16%20at%2016-16-46%20Frontend%20Mentor%20Tip%20calculator%20app.png)
+
+### Links
+
+
+- Solution URL: [GitHub Repo](https://github.com/RowoS/tip-calc-lor)
+- Live Server URL: [Vercel App](https://qr-code1-orpin.vercel.app/)
+
+
+## Author
+
+- Frontend Mentor: [Frontend Mentor Profile](https://www.frontendmentor.io/profile/RowoS)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
