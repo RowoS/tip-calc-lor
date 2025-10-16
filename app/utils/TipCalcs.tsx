@@ -31,3 +31,13 @@ export function showErrorMessage(numberOfPeople: string): boolean
 
     return peopleNum < 1;
 }
+
+export function isValidNumberInput(value: string, allowDecimal: boolean = true): boolean {
+  if (value === "") return true;
+  
+  if (/^0\d/.test(value)) return false;
+  
+  const pattern = allowDecimal ? /^\d*\.?\d*$/ : /^\d+$/;
+  return pattern.test(value);
+  
+}

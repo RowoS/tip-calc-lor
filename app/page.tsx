@@ -9,7 +9,7 @@ import OutputField from "./components/OutputField";
 import TipButtons from "./components/TipButtons";
 
 import { useState } from "react";
-import { calculateTipPerPerson, calculateTotalPerPerson, showErrorMessage } from "./utils/TipCalcs";
+import { calculateTipPerPerson, calculateTotalPerPerson, showErrorMessage, isValidNumberInput } from "./utils/TipCalcs";
 import { calculationProps } from "./types";
 
 export default function Home() {
@@ -28,14 +28,14 @@ export default function Home() {
   }
 
   const handleBillChange = (value: string) => {
-    if (value === "" || /^\d*\.?\d*$/.test(value)) {
+    if (isValidNumberInput(value, true)) {
       setBillAmount(value);
     }
     
   };
 
   const handlePeopleChange = (value: string) => {
-    if (value === "" || /^\d+$/.test(value))
+    if (isValidNumberInput(value, false))
     {
       setNumberOfPeople(value);
       setErrorMessage(showErrorMessage(value));
@@ -51,7 +51,7 @@ export default function Home() {
   };
 
   const handleCustomTipChange = (value: string) => {
-    if ((value === "" || /^\d*\.?\d*$/.test(value)) && !Number.isNaN(parseFloat(value)))
+    if (isValidNumberInput(value, true) && !Number.isNaN(parseFloat(value)))
     {
       setCustomTip(value);
       const val = parseFloat(value);
@@ -74,16 +74,17 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col justify-center items-center min-h-screen">
+      <div className="flex flex-col justify-center items-center min-h-screen p-4">
         <Image 
           src={LogoIcon}
           alt=""
+          className="mb-6 sm:mb-0"
         />
-        <div className="bg-main-container-color max-w-4x1 rounded-3xl p-8 mt-10">
-          <div className="grid grid-cols-2 gap-12">
-            <div className="flex flex-col col-start-1">
+        <div className="bg-main-container-color w-full max-w-4xl rounded-3xl p-6 sm:p-8 mt-6 sm:mt-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            <div className="flex flex-col">
               
-              <p className="text-m text-label-text-color">Bill</p>
+              <p className="text-sm sm:text-base text-label-text-color mb-2">Bill</p>
               <InputField 
                 icon={DollarIcon}
                 value={billAmount}
@@ -98,9 +99,9 @@ export default function Home() {
                 onCustomTipChange={handleCustomTipChange}
               />
               
-              <div className="mt-10">
-                <div className="flex justify-between items-center">
-                  <p className="text-m text-label-text-color">Number of People</p>
+              <div className="mt-8 sm:mt-10">
+                <div className="flex justify-between items-center mb-2">
+                  <p className="text-sm sm:text-base text-label-text-color">Number of People</p>
                   {errorMessage && (
                     <p className="text-xs text-red-500">Can`t be zero</p>
                   )}       
@@ -117,9 +118,7 @@ export default function Home() {
               </div>
             
             </div>
-            <div className="bg-output-container-color flex flex-col col-start-2">
-              
-              <div className="pt-4"></div> 
+            <div className="bg-output-container-color flex flex-col rounded-2xl p-6 sm:p-8">
               
               <OutputField 
                 label="Tip Amount" 
@@ -130,21 +129,16 @@ export default function Home() {
                 amount={calculateTotalPerPerson(calcHelper)} 
               />
 
-              <div className="bg-output-color text-output-container-color flex max-w-50 w-50 p-4 justify-center items-center self-center mt-16 rounded-lg">
+              <div className="mt-8 sm:mt-16">
                 <button 
-                  className="text-reset-text-color"
+                  className="bg-output-color text-output-container-color w-full p-3 sm:p-4 rounded-lg text-reset-text-color cursor-pointer hover:bg-button-hover-color transition-colors font-bold"
                   onClick={handleReset}
-                >RESET</button>
-              
+                >
+                  RESET
+                </button>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="text-input-text-color">
-          Bill = {billAmount}
-          Tip Percent = {tipPercentage}
-          Number of PPL = {numberOfPeople}
         </div>
       </div>
     </>
