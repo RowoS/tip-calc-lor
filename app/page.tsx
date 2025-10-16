@@ -83,7 +83,7 @@ export default function Home() {
           <div className="grid grid-cols-2 gap-12">
             <div className="flex flex-col col-start-1">
               
-              <p className="text-2xl text-label-text-color">Bill</p>
+              <p className="text-m text-label-text-color">Bill</p>
               <InputField 
                 icon={DollarIcon}
                 value={billAmount}
@@ -100,7 +100,7 @@ export default function Home() {
               
               <div className="mt-10">
                 <div className="flex justify-between items-center">
-                  <p className="text-2xl text-label-text-color">Number of People</p>
+                  <p className="text-m text-label-text-color">Number of People</p>
                   {errorMessage && (
                     <p className="text-xs text-red-500">Can`t be zero</p>
                   )}       
@@ -117,9 +117,9 @@ export default function Home() {
               </div>
             
             </div>
-            <div className="bg-output-container-color flex flex-col col-start-2">
+            <div className="bg-output-container-color flex flex-col col-start-2 rounded-2xl">
               
-              <div className="pt-4"></div> 
+              <span className="pt-4" /> 
               
               <OutputField 
                 label="Tip Amount" 
@@ -130,9 +130,11 @@ export default function Home() {
                 amount={calculateTotalPerPerson(calcHelper)} 
               />
 
-              <div className="bg-output-color text-output-container-color flex max-w-50 w-50 p-4 justify-center items-center self-center mt-16 rounded-lg">
+              <span className="mt-16" />
+
+              <div className="bg-output-color text-output-container-color flex w-65  justify-center items-center self-center rounded-lg">
                 <button 
-                  className="text-reset-text-color"
+                  className="text-reset-text-color cursor-pointer hover:bg-button-hover-color p-4 w-full h-full rounded-lg transition-colors"
                   onClick={handleReset}
                 >RESET</button>
               
@@ -141,11 +143,11 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="text-input-text-color">
+        {/* <div className="text-input-text-color">
           Bill = {billAmount}
           Tip Percent = {tipPercentage}
           Number of PPL = {numberOfPeople}
-        </div>
+        </div> */}
       </div>
     </>
   );
